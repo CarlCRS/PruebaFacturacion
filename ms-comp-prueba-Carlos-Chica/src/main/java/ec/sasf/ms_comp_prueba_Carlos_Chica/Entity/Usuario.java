@@ -32,6 +32,9 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El nombre no puede estar vacio")
+    private String nombre;
+
     @Email(message = "Ingrese un correo valido")
     private String correo;
 
@@ -42,11 +45,7 @@ public class Usuario implements UserDetails {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Rol rol;
-
-    @NotBlank()
-    private String nombre;
-
-
+   
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + rol.name()));

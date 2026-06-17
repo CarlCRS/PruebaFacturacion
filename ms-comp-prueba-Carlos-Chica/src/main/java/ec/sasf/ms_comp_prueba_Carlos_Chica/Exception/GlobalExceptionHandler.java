@@ -1,5 +1,6 @@
 package ec.sasf.ms_comp_prueba_Carlos_Chica.Exception;
 
+
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> badRequest(MethodArgumentNotValidException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Datos de entrada invalidos"));
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Datos de entrada invalidos"));
     }
 }

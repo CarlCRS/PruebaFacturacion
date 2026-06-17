@@ -5,6 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import ec.sasf.ms_comp_prueba_Carlos_Chica.Entity.Rol;
 import ec.sasf.ms_comp_prueba_Carlos_Chica.Entity.Usuario;
 import ec.sasf.ms_comp_prueba_Carlos_Chica.Exception.GlobalExcepcion;
 import ec.sasf.ms_comp_prueba_Carlos_Chica.Repository.UsuarioRepository;
@@ -40,7 +41,8 @@ public class AuthService {
                 .correo(request.getCorreo())
                 .nombre(request.getNombre())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .rol(request.getRol())
+                //Lo dejo por defecto como admin nomas
+                .rol(Rol.ADMIN)
                 .build();
         usuarioRepo.save(user);
         return "Usuario registrado exitosamente";

@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ec.sasf.ms_comp_prueba_Carlos_Chica.Entity.Rol;
 
 @Data
 @Builder
@@ -25,7 +24,4 @@ public class RegistroDTO {
     @NotBlank(message = "La contrasena es obligatoria")
     @Size(min = 8, max = 100, message = "La contrasena debe tener entre 8 y 100 caracteres")
     private String password;
-
-    @NotNull(message = "El rol es obligatorio")
-    private Rol rol;
 }

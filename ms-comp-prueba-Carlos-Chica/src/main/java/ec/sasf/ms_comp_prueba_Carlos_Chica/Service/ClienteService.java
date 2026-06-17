@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ec.sasf.ms_comp_prueba_Carlos_Chica.Entity.Cliente;
+import ec.sasf.ms_comp_prueba_Carlos_Chica.Entity.Rol;
 import ec.sasf.ms_comp_prueba_Carlos_Chica.Entity.Usuario;
+import ec.sasf.ms_comp_prueba_Carlos_Chica.Exception.GlobalExcepcion;
 import ec.sasf.ms_comp_prueba_Carlos_Chica.Repository.ClienteRepo;
 import ec.sasf.ms_comp_prueba_Carlos_Chica.Repository.UsuarioRepository;
 import ec.sasf.ms_comp_prueba_Carlos_Chica.dto.ClienteDTO;
@@ -13,11 +15,13 @@ import ec.sasf.ms_comp_prueba_Carlos_Chica.dto.ClienteDTO;
 public class ClienteService {
     @Autowired
     private ClienteRepo clienterepo;
+    @Autowired
     private UsuarioRepository usuariorepo;
 
     public Cliente creaCliente(ClienteDTO dto) {
         Usuario usuarioencontrado = usuariorepo.findById(dto.getIdUsuario())
-         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+         .orElseThrow(() -> new GlobalExcepcion("Usuario no encontrado"));
+        usuarioencontrado.setRol(Rol.CLIENTE);
 
         Cliente clientenuevo = new Cliente();
         clientenuevo.setUsuario(usuarioencontrado);

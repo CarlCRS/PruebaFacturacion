@@ -1,5 +1,7 @@
 package ec.sasf.ms_comp_prueba_Carlos_Chica.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +25,7 @@ public class Cliente {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+    @JsonIgnoreProperties({"password", "authorities", "accountNonExpired", "accountNonLocked", "credentialsNonExpired", "enabled", "username"})
     private Usuario usuario;
     @Column(unique = true, nullable = false)
     private String identificacion; 
